@@ -68,6 +68,10 @@ $app['dao.link'] = $app->share(function ($app) {
     return $linkDAO;
 });
 
+$app['dao.rss'] = $app->share(function ($app) {
+    return new Watson\DAO\RssDAO($app['db']);
+});
+
 
 // Register error handler
 $app->error(function (\Exception $e, $code) use ($app) {

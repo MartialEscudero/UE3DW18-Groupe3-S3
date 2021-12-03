@@ -28,6 +28,17 @@ class RssDAO extends DAO
         return $_links;
     }
 
+    /**
+    * Create the text file for the rss feed
+    * 
+    * @return string
+    */
+    public function getRSS(){
+        $rss = '';
+
+        return $rss;
+    }
+
     protected function buildDomainObject($row) {
         $rss = new Rss();
         $rss->setTitle($row['lien_titre']);

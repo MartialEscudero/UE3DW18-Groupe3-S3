@@ -4,6 +4,7 @@ namespace Watson\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController {
 
@@ -65,5 +66,25 @@ class HomeController {
             'last_username' => $app['session']->get('_security.last_username'),
             )
         );
+    }
+
+    /**
+     * Rss feed
+     *
+     * @param Request $request Incoming request
+     * @param Application $app Silex application
+     */
+    public function rssFeedAction(Request $request, Application $app) {
+        //build the rss text
+        $rss = $app['dao.rss']->getRSS();
+
+        //Create a http response
+        $response = new Response();
+        $response->headers->set("Content-type", "text/xml");
+        //set status code and the rss text
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->setContent($rss); //la variable $rss doit être de type string
+        
+        return $response;
     }
 }
