@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 03 déc. 2021 à 20:21
+-- Généré le : dim. 05 déc. 2021 à 22:23
 -- Version du serveur : 8.0.26-0ubuntu0.20.04.2
 -- Version de PHP : 7.4.26
 
@@ -50,7 +50,11 @@ INSERT INTO `tl_liens` (`lien_id`, `lien_url`, `lien_titre`, `lien_desc`, `user_
 (8, 'https://medium.com/', 'Medium', 'Medium est un site de blogging où des experts partagent leurs points de vue et autres connaissances.', 2),
 (9, 'https://www.lemondeinformatique.fr/', 'Le Monde Informatique', 'Journal web pour les professionnels de l\'informatique.', 2),
 (10, 'https://makezine.com/', 'Make: DIY Projects and Ideas for Makers', 'Site web qui regroupe des projets DIY sur l\'électronique.', 2),
-(11, 'https://all3dp.com/fr/', 'All3DP', 'Site web sur le monde de l\'impression 3D.', 2);
+(11, 'https://all3dp.com/fr/', 'All3DP', 'Site web sur le monde de l\'impression 3D.', 2),
+(12, 'bitwarden.com', 'Bitwarden', 'Gestionnaire de mot de passe open source', 4),
+(13, 'https://app.revolt.chat/', 'Revolt', 'Alternative à Discord open source', 4),
+(14, 'https://anytype.io', 'Anytype', 'Alternative à Notion open source, crypté et local très intéressante', 4),
+(15, 'https://www.opera.com/fr/gx', 'Opera GX', 'Navigateur dédié aux jeux mais avec beaucoup d\'option intéressantes pour tout le monde et permettant une meilleure productivité', 4);
 
 -- --------------------------------------------------------
 
@@ -109,7 +113,11 @@ INSERT INTO `tl_tags_liens` (`tag_id`, `lien_id`) VALUES
 (3, 4),
 (2, 5),
 (2, 6),
-(11, 7);
+(11, 7),
+(3, 12),
+(3, 13),
+(3, 14),
+(11, 15);
 
 -- --------------------------------------------------------
 
@@ -132,7 +140,8 @@ CREATE TABLE `tl_users` (
 INSERT INTO `tl_users` (`usr_id`, `usr_name`, `usr_password`, `usr_salt`, `usr_role`) VALUES
 (1, 'admin', 'LsJKppRTEPz4uKrkhScOE6HBSvHuaIcFbAX9FWC7h/f5HffX4TBcFt7p8M0hqvGzFXL+JV8TzEYePoimaosfMQ==', '>=28!7NLw!S37zLjs7Uu[nC', 'ROLE_ADMIN'),
 (2, 'Gabriel', 'YXU6EeDwsWk4yZGUC12BNHIQ2V80s6lkzYr/TiR2HRQF4RZR3pZqlU6RGD3TXNqegqMRvJlJ96WAmGUoJPkFog==', '5f4410e2ffe311ea22ec03a', 'ROLE_ADMIN'),
-(3, 'Martial', 'h/U5DF+qq83U8/msiOVOfAYAWoBJOn3TSneO148tGA62Wt2rIdgTOsrFiaJaTS1lnstb7iTQnDb8JhrVZ5hkSQ==', 'b65a788a8b647fd0c9bf919', 'ROLE_ADMIN');
+(3, 'Martial', 'h/U5DF+qq83U8/msiOVOfAYAWoBJOn3TSneO148tGA62Wt2rIdgTOsrFiaJaTS1lnstb7iTQnDb8JhrVZ5hkSQ==', 'b65a788a8b647fd0c9bf919', 'ROLE_ADMIN'),
+(4, 'Pacôme', 'reDp+6Enh/A5/SU9BXwRfkZ1IfBjJeINJU1nj+xGNUbT2htMP+bl8s83o5wP2bo0z6IWyCu//RpV5+WC5yRigA==', 'bf2fbccd29ed0755f761373', 'ROLE_ADMIN');
 
 --
 -- Index pour les tables déchargées
@@ -164,7 +173,7 @@ ALTER TABLE `tl_users`
 -- AUTO_INCREMENT pour la table `tl_liens`
 --
 ALTER TABLE `tl_liens`
-  MODIFY `lien_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `lien_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `tl_tags`
@@ -176,7 +185,7 @@ ALTER TABLE `tl_tags`
 -- AUTO_INCREMENT pour la table `tl_users`
 --
 ALTER TABLE `tl_users`
-  MODIFY `usr_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `usr_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
