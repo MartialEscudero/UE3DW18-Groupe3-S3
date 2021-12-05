@@ -68,22 +68,26 @@ class HomeController {
         );
     }
 
-    /**
+     /**
      * Rss feed
      *
      * @param Request $request Incoming request
      * @param Application $app Silex application
      */
-    public function rssFeedAction(Request $request, Application $app) {
+    public function rssFeedAction(?string $number, Request $request, Application $app) {
         //build the rss text
-        $rss = $app['dao.rss']->getRSS();
+        $rss = $app['dao.rss']->getRSS($number);
+
+        $rssText = $app['twig']->render('feed.rss.twig', array(
+            'rss' => $rss
+        ));
 
         //Create a http response
         $response = new Response();
         $response->headers->set("Content-type", "text/xml");
         //set status code and the rss text
         $response->setStatusCode(Response::HTTP_OK);
-        $response->setContent($rss); //la variable $rss doit être de type string
+        $response->setContent($rssText);
         
         return $response;
     }

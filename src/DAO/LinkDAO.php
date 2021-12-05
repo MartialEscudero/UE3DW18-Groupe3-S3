@@ -47,6 +47,29 @@ class LinkDAO extends DAO
     }
 
     /**
+     * Return a certain number of last links, sorted by date (most recent first).
+     *
+     * @param integer $number the number of links desired
+     * @return array A list of all links.
+     */
+    public function findLastLinks($number) {
+        $sql = "
+            SELECT * 
+            FROM tl_liens 
+            ORDER BY lien_id DESC LIMIT ?
+        ";
+        $result = $this->getDb()->fetchAll($sql, array($number), array("integer"));
+
+        // Convert query result to an array of domain objects
+        $_links = array();
+        foreach ($result as $row) {
+            $linkId          = $row['lien_id'];
+            $_links[$linkId] = $this->buildDomainObject($row);
+        }
+        return $_links;
+    }
+
+    /**
      * Returns a link matching the supplied id.
      *
      * @param integer $id The link id.
@@ -64,7 +87,7 @@ class LinkDAO extends DAO
         if ($row){
             return $this->buildDomainObject($row);
         }else{
-            throw new \Exception("No link matching id " . $id);
+            throw new \Exception("No link matching id " . $id, 404);
         }
     }
 
